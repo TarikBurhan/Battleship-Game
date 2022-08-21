@@ -4,13 +4,15 @@ from network import *
 def main():
     print("Game will be on localhost with port 8000.\n")
     host = 'localhost'
-    port = 8000
+    port = 5000
     is_host = None
     win_status = False
     turn = None
     enemy_hit = False
     move = None
 
+    # Getting an input from player whether they want to be a host or a client to join a host.
+    # Starting turn is client.
     while True:
         host_or_join = input("Do you want to host or join? (H for host, J for join)\n")
         if(host_or_join.upper() == "H"):
@@ -22,14 +24,18 @@ def main():
             turn = True
             break
 
+    # Create sockets
     network = Network(host, port, is_host)
 
+    # Create boards for both player and enemy
     my_board = create_board()
     enemy_board = create_board()
     
+    # Place players ships
     place_ships(my_board, enemy_board)
     print("All ships deployed")
 
+    # Game loop starts and if there is no ship in player the loop ends.
     while(check_ships(my_board) != False):
         if(turn == True):
             x, y = get_shoot_coords(enemy_board)
@@ -41,6 +47,8 @@ def main():
             if not data:
                 win_status = True
                 break 
+
+            # Received data decoding 
             data = data.decode('utf-8')
             enemy_shot_x = int(data[0])
             enemy_shot_y = int(data[1])
@@ -67,13 +75,5 @@ def main():
     else:
         print("You lost.\n")
 
-def x():
-    q = "011"
-    z= bytes(q, 'ascii')
-
-    print(z)
-
-
 if __name__ == "__main__":
-    x()
     main()

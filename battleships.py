@@ -1,3 +1,6 @@
+"""
+    Main functions for Battleship Game
+"""
 
 SHIP_LENGTHS = [CARRIER, BATTLESHIP, CRUISER, SUBMARINE, DESTROYER] = 5, 4, 3, 3, 2
 
@@ -143,7 +146,7 @@ def place_ships(my_board, enemy_board):
     """
     Place all ships in the game.
     :param my_board: Board that ships will be deployed
-    :param enemy_board: Enemy board
+    :param enemy_board: Enemy board that needs to be checked
     """
     total_ship_count = len(SHIP_LENGTHS)
     while True:
@@ -157,6 +160,9 @@ def place_ships(my_board, enemy_board):
 def is_enemy_attack_valid(x, y, my_board):
     """
     Checks whether enemy shot is sunk the ship or missed it
+    :param x: x-axis value
+    :param y: y-axis value
+    :param my_board: Which board that needs to be checked
     """
     if(my_board[x][y] == MY_SHIP_ALIVE):
         return True
@@ -166,6 +172,9 @@ def is_enemy_attack_valid(x, y, my_board):
 def is_attack_valid(x, y, enemy_board):
     """
     Checks whether players shot never done before
+    :param x: x-axis value
+    :param y: y-axis value
+    :param enemy_board: Which board that needs to be checked
     """
     if(enemy_board[x][y] == EMPTY):
         return True
@@ -175,6 +184,9 @@ def is_attack_valid(x, y, enemy_board):
 def update_self_board(x, y, my_board):
     """
     Changes players board according to enemy's shot
+    :param x: x-axis value
+    :param y: y-axis value
+    :param my_board: 
     """
     if(my_board[x][y] == EMPTY):
         my_board[x][y] = MY_SHIP_MISS
@@ -184,6 +196,10 @@ def update_self_board(x, y, my_board):
 def update_enemy_board(x, y, response, enemy_board):
     """
     Changes enemy's board according to players shot
+    :param x: x-axis value
+    :param y: y-axis value
+    :param response: Response from the enemy player that whether there is a ship or not
+    :param enemy_board: Which board that needs to be checked
     """
     if(response == True):
         enemy_board[x][y] = ENEMY_SHIP_SUNK
@@ -204,6 +220,10 @@ def check_ships(player_board):
     return False
 
 def get_shoot_coords(enemy_board):
+    """
+    Get attack coordinates from the player and return them
+    :param enemy_board: Enemy player board that need to be checked
+    """
     while True:
         input_string = input("Give attack coordinates. (Format example: X1Y1 like 67)\n")
         if(len(input_string) != 2):
@@ -220,13 +240,3 @@ def get_shoot_coords(enemy_board):
                 else:
                     return x, y
 
-
-board1 = create_board()
-board2 = create_board()
-
-"""
-print_boards(board1, board2)
-place_ships(board1, board2)
-
-#print_boards(board1, board2)
-"""
