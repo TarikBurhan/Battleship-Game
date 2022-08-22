@@ -2,6 +2,7 @@
     Main functions for Battleship Game
 """
 
+
 SHIP_LENGTHS = [CARRIER, BATTLESHIP, CRUISER, SUBMARINE, DESTROYER] = 5, 4, 3, 3, 2
 
 SHIP_NAMES = {

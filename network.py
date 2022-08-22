@@ -1,3 +1,7 @@
+"""
+Contains a class that connect a host or host a game to play game
+"""
+
 from battleships import *
 import socket
 import logging

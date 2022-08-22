@@ -1,8 +1,12 @@
+"""
+Where Battleship game runs
+"""
+
 from network import *
 
 
 def main():
-    print("Game will be on localhost with port 8000.\n")
+    print("Game will be on localhost with port 5000.\n")
     host = 'localhost'
     port = 5000
     is_host = None
