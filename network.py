@@ -25,7 +25,7 @@ class Network:
         if self.is_host == True:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.sock.bind((host, port))
-            self.sock.listen()
+            self.sock.listen(1) # Only 1 opponent allowed
             logging.debug("Server is listening on port.")
         # If player is not a host, socket connects to another socket which is a host.
         else:
